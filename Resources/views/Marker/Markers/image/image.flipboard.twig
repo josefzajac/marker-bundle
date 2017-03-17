@@ -1,0 +1,18 @@
+{%- if image.url and verifyImage(image) -%}
+    {% import "::_macros.html.twig" as macros %}
+
+    <figure>
+        {{- '' -}}
+        <img src="{{ macros.absoluteArticleDetailImage(image, 'xl') }}" alt="{{ image.alt }}">
+        {{- '' -}}
+        <figcaption>
+            {{ image.caption }}
+            {%- if image.copyright -%}
+                <p class="fl:credit">
+                    (&copy; {{ image.copyrightyear }} {{ image.copyright|striptags }})
+                </p>
+            {%- endif -%}
+        </figcaption>
+        {{- '' -}}
+    </figure>
+{%- endif -%}

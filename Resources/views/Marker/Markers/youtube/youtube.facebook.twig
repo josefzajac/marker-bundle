@@ -1,0 +1,11 @@
+{% import "::_macros.html.twig" as macros %}
+{{ macros.templateNameComment(_self) }}
+
+{% set youtubeUrl = 'https://www.youtube.com/embed/' ~ id
+    ~ '?html5=1&amp;rel=0&amp;hd=1&amp;quality=hd720&amp;fs=1&amp;modestbranding=1&amp;rel=0&amp;color=white&amp;theme=light&amp;enablejsapi=1' %}
+
+{% if id or mainVideo %}
+    <figure class="op-interactive">
+        <iframe src="{{ youtubeUrl }}" width="560" height="315"></iframe>
+    </figure>
+{%- endif -%}

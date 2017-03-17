@@ -1,0 +1,32 @@
+{
+  "name": "s2content/marker-bundle",
+  "description": "Symfony2 Content Markers Bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Josef Zajac",
+      "email": "josef.zajac@sinnerschrader.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "S2Content\\Bundle\\MarkerBundle\\": ""
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle":          "~4.2.4",
+    "php":                        ">=5.5",
+    "twig/extensions":            "^1.4",
+    "symfony/css-selector":       "^3.2",
+    "symfony/dom-crawler":        "^3.2",
+    "symfony/twig-bundle":        "^3.2",
+    "symfony/framework-bundle":   "~2.3",
+    "symfony/property-access":    "~2.3",
+    "symfony/expression-language":"~2.3",
+    "rybakit/arguments-resolver": "1.0.x-dev@dev"
+  },
+  "require-dev": {
+    "henrikbjorn/phpspec-code-coverage": "~1.0",
+    "bossa/phpspec2-expect": "~1.0"
+  }
+}

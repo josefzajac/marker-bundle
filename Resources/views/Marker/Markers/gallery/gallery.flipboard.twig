@@ -1,0 +1,22 @@
+{%- if images -%}
+    {% import "::_macros.html.twig" as macros %}
+
+    <section class="fl-slideshow">
+        {%- for image in images if verifyImage(image) -%}
+            <figure>
+                {{- '' -}}
+                <img src="{{ macros.absoluteArticleDetailImage(image, 'xl') }}" alt="{{ image.title }}">
+                {{- '' -}}
+                <figcaption>
+                    {{- image.description is defined ? image.description : '' -}}
+                    {%- if image.copyright -%}
+                        <p class="fl:credit">
+                            (&copy; {{ image.copyrightyear }} {{ image.copyright }})
+                        </p>
+                    {%- endif -%}
+                </figcaption>
+                {{- '' -}}
+            </figure>
+        {%- endfor -%}
+    </section>
+{%- endif -%}

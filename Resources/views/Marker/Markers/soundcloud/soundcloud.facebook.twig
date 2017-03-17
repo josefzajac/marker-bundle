@@ -1,0 +1,11 @@
+{% import "::_macros.html.twig" as macros %}
+{{ macros.templateNameComment(_self) }}
+
+{# NOTE:
+    - FBIA doesn't like iframe size in %, therefore in px & FBIA will compute the ratio
+#}
+<figure class="op-interactive">
+    {{- '' -}}
+    <iframe width="600" height="{{ height }}" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url={{ (url ~ '?' ~ params)|url_encode }}"></iframe>
+    {{- '' -}}
+</figure>

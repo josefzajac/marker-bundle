@@ -1,0 +1,7 @@
+{% if article.toplists is defined and article.toplists|length %}
+    {% for toplist in article.toplists %}
+        <aside class="move-aside">
+            {{ render_esi(controller('CurvedEdmaBundle:Teaser:toplist', {'slug' : toplist.slug})) }}
+        </aside>
+    {% endfor %}
+{% endif %}

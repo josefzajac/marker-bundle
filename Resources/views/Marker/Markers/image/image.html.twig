@@ -1,0 +1,54 @@
+{% if image.url and verifyImage(image) %}
+    {% import "::_macros.html.twig" as macros %}
+
+    <div class="fullsize">
+        <div class="fullsize-inner">
+
+            <figure class="figure {% if image.align != 'alignnone' %}{{ image.align == 'alignright' ? 'right' : 'left' }}{% else %}figcaption--inline{% endif %}">
+
+                {% if '.gif' in image.url %}
+                    {# TODO: check gif #}
+                    <img src="{{ image.url | imagine_filter('animated_gif') }}"
+                         alt="{{ image.alt }}" />
+                {% else %}
+
+                    <div class="image lazyload">
+                        <div class="image-picture">
+                            <img
+                                data-src="{{ macros.articleDetailImage(image, 'xl') }}"
+                                data-srcset="
+                                    {{ macros.articleDetailImage(image, 'xs') }} 320w,
+                                    {{ macros.articleDetailImage(image, 'sm') }} 480w,
+                                    {{ macros.articleDetailImage(image, 'md') }} 768w,
+                                    {{ macros.articleDetailImage(image, 'lg') }} 900w,
+                                    {{ macros.articleDetailImage(image, 'xl') }} 1140w
+                                "
+                                data-sizes="auto"
+                                class="image-img lazyload"
+                                style="width:100%"
+                                alt="{{ image.alt }}" />
+                        </div>
+                    </div>
+
+                {% endif %}
+
+                <figcaption class="figcaption">
+                    {% set label = image.copyrightyear|trim ~' '~ image.copyright|trim %}
+
+                    {{ image.caption }}
+                    {% if image.copyright %}
+                        <small class="figcaption-copyright">
+                            {% if image.copyrighturl %}
+                                <a target="_blank" href="{{ image.copyrighturl }}">(&copy; {{ label }})</a>
+                            {% else %}
+                                (&copy; {{ label }})
+                            {% endif %}
+                        </small>
+                    {% endif %}
+
+                </figcaption>
+            </figure>
+
+        </div>
+    </div>
+{% endif %}

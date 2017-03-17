@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="s2_content_marker.hero_manager.class">S2Content\Bundle\MarkerBundle\Component\HeroManager</parameter>
+        <parameter key="s2_content_marker.marker_dispatcher.class">S2Content\Bundle\MarkerBundle\Render\ContentMarkerDispatcher</parameter>
+        <parameter key="s2_content_marker.marker_extension.class">S2Content\Bundle\MarkerBundle\Render\ContentMarkerTwigExtension</parameter>
+    </parameters>
+
+    <services>
+        <!-- CONNECT && RENDER CLASSES -->
+        <service id="s2_content_marker.marker_dispatcher" class="%s2_content_marker.marker_dispatcher.class%">
+            <call method="setTemplating"><argument type="service" id="twig"/></call>
+        </service>
+
+        <service id="s2_content_marker.marker_extension" class="%s2_content_marker.marker_extension.class%">
+            <argument type="service" id="s2_content_marker.marker_dispatcher" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="s2_content_marker.hero_manager" class="%s2_content_marker.hero_manager.class%">
+            <argument type="service" id="curved_edma.repository.product" />
+        </service>
+    </services>
+
+</container>

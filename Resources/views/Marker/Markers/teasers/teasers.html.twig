@@ -1,0 +1,13 @@
+<div class="fullsize">
+    <div class="fullsize-inner">
+
+        <div class="grid">
+        {% for id in teasers %}
+            <div class="topic-grid teaser--default-article-container">
+                {{ render_esi(controller('CurvedCmsBundle:Teaser:single', { 'id': id, 'template': 'default_article' })) }}
+            </div>
+        {% endfor %}
+        </div>
+
+    </div>
+</div>

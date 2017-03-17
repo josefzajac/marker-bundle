@@ -1,0 +1,10 @@
+{% import "::_macros.html.twig" as macros %}
+{{ macros.templateNameComment(_self) }}
+
+{% if entityId %}
+<figure class="op-interactive">
+    <iframe>
+        {% include '@CurvedFeed/Rss/facebook/_products-iframe.facebook.twig' with {'entityId': entityId, 'type': 'fbia', article: article, boxTitle: 'hero banner'} %}
+    </iframe>
+</figure>
+{% endif %}

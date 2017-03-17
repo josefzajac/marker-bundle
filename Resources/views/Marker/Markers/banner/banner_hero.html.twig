@@ -1,0 +1,11 @@
+{% if entityId %}
+<div class="fullsize">
+    <div class="fullsize-inner">
+
+        <div class="product-teaser--large-container">
+            {{ render_esi(controller('CurvedEdmaBundle:Teaser:single', { 'id': entityId, 'template': 'product_large_article', 'boxTitle': 'Article hero shoplink' })) }}
+        </div>
+
+    </div>
+</div>
+{% endif %}

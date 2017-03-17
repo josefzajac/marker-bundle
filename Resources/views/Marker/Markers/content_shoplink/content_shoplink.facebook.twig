@@ -1,0 +1,8 @@
+{% import "::_macros.html.twig" as macros %}
+{{ macros.templateNameComment(_self) }}
+
+{# NOTE:
+    - using same template as for flipboard, then just duplicate totally same for FBIA
+#}
+
+{{ render(controller('CurvedEdmaBundle:Teaser:single', { 'id': id, 'template': 'product_content_link', 'customTitle': txt, 'outputContext': 'flipboard' })) }}

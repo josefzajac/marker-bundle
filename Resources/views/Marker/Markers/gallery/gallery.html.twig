@@ -1,0 +1,98 @@
+{% if images %}
+    {% import "::_macros.html.twig" as macros %}
+
+    <div class="fullsize gallery js_gallery">
+        <section class="fullsize-inner">
+            <div class="js_gallery-main">
+                <div class="gallery-frame gallery-slidable-frame js_slidable-frame">
+                    <button class="gallery-button gallery-main-button gallery-button--prev js_prev">&lt;</button>
+
+                    <ul class="gallery-container gallery-slidable-container js_slidable-container">
+
+                        {% for image in images if verifyImage(image) %}
+
+                            <li class="gallery-slidable-slide image image--article-detail js_slidable-slide">
+
+                                <div class="image-picture lazyload">
+
+                                    <img
+                                        data-src="{{ macros.articleDetailImage(image, 'xl') }}"
+                                        data-srcset="
+                                            {{ macros.articleDetailImage(image, 'xs') }} 320w,
+                                            {{ macros.articleDetailImage(image, 'sm') }} 480w,
+                                            {{ macros.articleDetailImage(image, 'md') }} 768w,
+                                            {{ macros.articleDetailImage(image, 'lg') }} 900w,
+                                            {{ macros.articleDetailImage(image, 'xl') }} 1140w
+                                        "
+                                        data-sizes="auto"
+                                        class="lazyload image-img"
+                                        style="width:100%"
+                                        alt="{{ image.title }}"
+                                        draggable="false" {# IE <= 9 #}
+                                        />
+
+                                    {% if image.description or image.copyright %}
+                                        <span class="gallery-img-caption">
+
+                                            {{ image.description ? image.description : '' }}
+
+                                            {% if image.copyright %}
+                                                <small class="gallery-img-caption-copy">
+                                                    {% if image.copyrighturl %}
+                                                        <a target="_blank" href="{{ image.copyrighturl }}">(&copy; {{ image.copyrightyear }} {{ image.copyright }})</a>
+                                                    {% else %}
+                                                        (&copy; {{ image.copyrightyear }} {{ image.copyright }})
+                                                    {% endif %}
+                                                </small>
+                                            {% endif %}
+                                        </span>
+                                    {% endif %}
+
+                                </div>
+
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    <button class="gallery-button gallery-main-button gallery-button--next js_next">&gt;</button>
+                </div>
+
+                {# mobile nav #}
+                <div class="slidable-nav js_slidable-nav">
+                    {% for image in images if verifyImage(image) %}
+                        <button type="button" class="slidable-nav-dot js_slidable-nav-dot{% if loop.first %} is-active{% endif %}">{{ loop.index }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {# thumbs #}
+            <div class="gallery-thumbs js_gallery-thumbs">
+                <button class="gallery-button gallery-thumbs-button gallery-button--prev js_prev">&lt;</button>
+                <div class="gallery-thumbs-frame gallery-slidable-frame js_slidable-frame">
+
+                    <ul class="gallery-thumbs-container js_slidable-container">
+
+                        {% for image in images if verifyImage(image) %}
+
+                            <li class="gallery-slidable-slide--thumb js_slidable-slide image image--article-detail{% if loop.first %} is-active{% endif %}">
+                                <img
+                                    data-src="{{ image.url | imagine_filter('article_detail_thumbs') }}"
+                                    class="lazyload image-img"
+                                    alt="{{ image.title }}"
+                                    draggable="false" {# IE <= 9 #}
+                                    />
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+                <button class="gallery-button gallery-thumbs-button gallery-button--next js_next">&gt;</button>
+            </div>
+
+        </section>
+    </div>
+{% endif %}

@@ -1,0 +1,11 @@
+{% import "::_macros.html.twig" as macros %}
+{{ macros.templateNameComment(_self) }}
+
+{# TODO:
+    - check - FBIA may need urls with protocol and not just "//"
+#}
+<figure class="op-interactive">
+    <iframe>
+        {{ json.html|raw }}
+    </iframe>
+</figure>

@@ -1,0 +1,20 @@
+{% import "::_macros.html.twig" as macros %}
+{{ macros.templateNameComment(_self) }}
+
+{%- if images -%}
+    <figure class="op-slideshow">
+        {%- for image in images if verifyImage(image) -%}
+            <figure>
+                {{- '' -}}
+                <img src="{{ macros.absoluteArticleDetailImage(image, 'xl') }}" alt="{{ image.title }}">
+                {{- '' -}}
+                <figcaption class="op-vertical-bottom op-small">
+                    <h1 class="op-vertical-bottom">{{ loop.index }}/{{ images|length }}</h1>
+                    {%- if image.description is defined %}{{ image.description }}{% endif -%}
+                    {%- set label = image.copyrightyear|trim ~' '~ image.copyright|trim -%}
+                    <cite class="op-vertical-bottom">(&copy; {{ label }})</cite>
+                </figcaption>
+            </figure>
+        {%- endfor -%}
+    </figure>
+{%- endif -%}

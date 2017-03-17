@@ -1,0 +1,21 @@
+{% import "::_macros.html.twig" as macros %}
+{{ macros.templateNameComment(_self) }}
+
+{%- if image.url and verifyImage(image) -%}
+    <figure>
+        {{- '' -}}
+        <img src="{{ macros.absoluteArticleDetailImage(image, 'xl') }}" alt="{{ image.alt }}">
+        {{- '' -}}
+        {# TODO:
+            - check if "op-small" is still needed
+        #}
+        <figcaption class="op-small">
+            <h1 class="op-small">{{ image.caption }}</h1>
+            {%- if image.copyright -%}
+                {%- set label = image.copyrightyear|trim ~' '~ image.copyright|trim -%}
+                <cite>(&copy; {{ label }})</cite>
+            {%- endif -%}
+        </figcaption>
+        {{- '' -}}
+    </figure>
+{%- endif -%}

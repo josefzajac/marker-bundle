@@ -1,0 +1,18 @@
+suites:
+    default:
+        namespace: S2Content\Bundle\MarkerBundle\
+        psr4_prefix: S2Content\Bundle\MarkerBundle\
+
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+
+code_coverage:
+  whitelist: [.]
+  format:
+    - text
+    - html
+#    - clover
+  output:
+     html: coverage
+#    clover: coverage.xml
+
