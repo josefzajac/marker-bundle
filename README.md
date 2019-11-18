@@ -6,19 +6,19 @@ Add the custom Repository to your `composer.json` (until we have a [Composer Rep
     "repositories": [
         {
             "type": "vcs",
-            "url" : "https://git.sinnerschrader.com/s2content/marker-bundle.git"
+            "url" : "https://github.com/josefzajac/marker-bundle.git"
         }
     ]
 ```
 
 then require via composer
 ```bash
-portal\$ php -d memory_limit=-1 composer.phar require s2content/marker-bundle:master -vv
+portal\$ php -d memory_limit=-1 composer.phar require josefzajac/marker-bundle:master -vv
 ```
 OR add to `composer.json`
 ```json
     "require": {
-        "s2content/marker-bundle" : "dev-master"
+        "josefzajac/marker-bundle" : "master"
     }
 ```
 
